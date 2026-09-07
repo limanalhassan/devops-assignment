@@ -1,0 +1,32 @@
+# Instructor notes and solutions stay local, never pushed
+CLAUDE.md
+solutions/
+
+# Local env and secrets
+.env
+.env.*
+*.tfvars
+!*.tfvars.example
+*.pem
+*.key
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+
+# Editors and OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Build and dependency junk from starter projects
+node_modules/
+__pycache__/
+*.pyc
+venv/
+.venv/
+dist/
+build/
