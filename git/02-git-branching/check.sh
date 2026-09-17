@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -u
 
-REPO="${1:-$HOME/devops-course/02-branching}"
+REPO="${1:-$HOME/devops-course/git/02-branching}"
 pass=0; fail=0
 ok() { printf '  PASS  %s\n' "$1"; pass=$((pass+1)); }
 no() { printf '  FAIL  %s\n' "$1"; fail=$((fail+1)); }
@@ -10,8 +10,12 @@ echo "Checking $REPO"
 echo
 
 if [ ! -d "$REPO" ] || ! git -C "$REPO" rev-parse --git-dir >/dev/null 2>&1; then
-  echo "  FAIL  no git repository at $REPO"
-  echo; echo "0 passed, 1 failed"; exit 1
+  echo "  FAIL  there is no git repository at $REPO"
+  echo
+  echo "  The checker looks for your work in that exact place. If you built it"
+  echo "  somewhere else, put that path on the end of the command."
+  echo
+  echo "0 passed, 1 failed"; exit 1
 fi
 cd "$REPO" || exit 1
 

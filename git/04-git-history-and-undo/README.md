@@ -2,7 +2,7 @@
 
 **Level:** intermediate
 **Time:** about 3 hours
-**Prerequisites:** assignments 01 to 03
+**Prerequisites:** `git/01` to `git/03`
 
 ## Warm up drill
 
@@ -19,10 +19,16 @@ How to work out what happened in a repository you did not write, and how to undo
 ## Before you start
 
 ```
-./setup.sh
+bash ~/devops-course/course/git/04-git-history-and-undo/setup.sh
 ```
 
-That creates `~/devops-course/04-history` with eight commits by three different people. One of those commits introduced a bug.
+That creates `~/devops-course/git/04-history` with eight commits by three different people. One of those commits introduced a bug.
+
+Check Python is available, the tests in this assignment use it:
+
+```
+python3 --version
+```
 
 ## Background
 
@@ -44,7 +50,7 @@ Almost everything in Git is recoverable. People are scared of it because the rec
 
 ## The task
 
-Work in `~/devops-course/04-history`.
+Work in `~/devops-course/git/04-history`.
 
 ### Part one, find the bug
 
@@ -60,7 +66,7 @@ Work in `~/devops-course/04-history`.
 
 ### Part two, undo it properly
 
-6. Other people already have this history, so do not rewrite it. Revert the bad commit and let Git write the revert message itself.
+6. Other people already have this history, so do not rewrite it. Revert the bad commit and let Git write the revert message itself. It will open in nano when the revert completes.
 
 7. The revert will not apply cleanly. It conflicts, because work was added to that file after the bad commit landed. Resolve it.
 
@@ -91,7 +97,7 @@ Work in `~/devops-course/04-history`.
 ## How you know you are done
 
 ```
-./check.sh
+bash ~/devops-course/course/git/04-git-history-and-undo/check.sh
 ```
 
 ## Questions to answer

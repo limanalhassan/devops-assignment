@@ -2,7 +2,7 @@
 
 **Level:** beginner
 **Time:** about 2 hours
-**Prerequisites:** assignment 01
+**Prerequisites:** `git/01`
 
 ## Warm up drill
 
@@ -21,10 +21,10 @@ Why branches exist, what a merge actually does to your history, and the differen
 Build the starting repository:
 
 ```
-./setup.sh
+bash ~/devops-course/course/git/02-git-branching/setup.sh
 ```
 
-That creates `~/devops-course/02-branching` with two commits on `main`.
+That creates `~/devops-course/git/02-branching` with two commits on `main`.
 
 ## Background
 
@@ -38,9 +38,13 @@ When you merge, one of two things happens.
 
 You will produce both in this assignment, on purpose, so you can see the difference in the log rather than being told about it.
 
+**When Git opens an editor.** A real merge needs a commit message, so Git opens your editor with one already written, usually `Merge branch 'feature/health-check'`. You set nano as your editor in `git/01`. The message is fine as it is, so just save and leave: Ctrl and O, Enter, Ctrl and X. Git finishes the merge the moment the editor closes.
+
+If the screen instead fills with `~` characters down the left and typing does strange things, you are in vim, which means `core.editor` was never set. Press Esc, type `:wq` and press Enter. Then go back and set it.
+
 ## The task
 
-Work in `~/devops-course/02-branching`.
+Work in `~/devops-course/git/02-branching`.
 
 1. Run `git log --oneline --graph --all` before you do anything. Keep running it after every step in this assignment. Watching the shape of the history change is the whole point.
 
@@ -58,7 +62,7 @@ Work in `~/devops-course/02-branching`.
 
 8. Switch to `main` and merge `feature/logging`. Fast forward again.
 
-9. Now merge `feature/health-check` into `main`. This time Git creates a merge commit and opens an editor for the message. Notice that this happened without you doing anything differently. Work out what changed.
+9. Now merge `feature/health-check` into `main`. This time Git creates a merge commit and opens nano for the message. Save and exit without changing it. Notice that this happened without you doing anything differently. Work out what changed.
 
 10. Confirm `main` now contains all three files and the README changes.
 
@@ -69,7 +73,7 @@ Work in `~/devops-course/02-branching`.
 ## How you know you are done
 
 ```
-./check.sh
+bash ~/devops-course/course/git/02-git-branching/check.sh
 ```
 
 ## Questions to answer

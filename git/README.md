@@ -1,10 +1,21 @@
-# Assignments
+# Git
 
-Work through these in order. Each folder has a `README.md` with the task and a `check.sh` you run yourself to see whether you finished.
+Do the [Linux phase](../linux/) first, all nine assignments. Everything here assumes you can move around a filesystem, edit a file in nano, and run a script without having to think about it. `git/07` also asks you to write shell scripts, which is taught in `linux/07`.
 
-Some assignments have a `setup.sh`. Run it before you start, it builds the repository you will be working in.
+Work through these in order. Each folder has a `README.md` with the task and a `check.sh` you run yourself to see whether you finished. Some also have a `setup.sh`, which you run first because it builds the repository you will be working in.
 
-## Phase 0: Git
+## Running things
+
+Same as the Linux phase. The word `bash`, then the full path to the script, from any folder:
+
+```
+bash ~/devops-course/course/git/02-git-branching/setup.sh
+bash ~/devops-course/course/git/02-git-branching/check.sh
+```
+
+Your own work goes in `~/devops-course/git/`. The course files you cloned stay untouched in `~/devops-course/course/`.
+
+## The assignments
 
 | # | Assignment | Level | Time |
 | --- | --- | --- | --- |
@@ -17,11 +28,17 @@ Some assignments have a `setup.sh`. Run it before you start, it builds the repos
 | 07 | [Working in a team](07-git-team-practice/) | intermediate | 3 hrs |
 | 08 | [Git under pressure](08-git-under-pressure/) | mid | 4 hrs |
 
-Later phases cover Linux, deploying an application by hand, Docker, AWS, Terraform, Ansible, Jenkins, Kubernetes and Python automation. They are not written yet.
+About five weeks at six to eight hours a week.
+
+## When Git opens an editor
+
+Sometimes Git needs you to write or confirm a message and opens an editor to ask. `git/01` sets that editor to nano. Save with Ctrl and O then Enter, leave with Ctrl and X, and Git carries on.
+
+If you ever land in a screen full of `~` characters where typing does strange things, that is vim. Press Esc, type `:wq`, press Enter, and then set your editor as `git/01` describes.
 
 ## How to submit
 
-From assignment 05 onwards, everything is submitted as a pull request. Fork this repository, create a branch named `<your-name>/<assignment-number>`, do the work, and open a pull request.
+From `git/05` onwards, everything is submitted as a pull request. Fork the course repository, create a branch named `<your-name>/<phase>-<number>`, for example `ama/git-05`, do the work, and open a pull request. `git/05` walks you through it and has you submit your Linux answers at the same time.
 
 ## The drill
 

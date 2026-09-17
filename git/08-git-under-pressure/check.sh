@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -u
 
-ROOT="${1:-$HOME/devops-course/08-pressure}"
+ROOT="${1:-$HOME/devops-course/git/08-pressure}"
 pass=0; fail=0
 ok() { printf '  PASS  %s\n' "$1"; pass=$((pass+1)); }
 no() { printf '  FAIL  %s\n' "$1"; fail=$((fail+1)); }
@@ -57,7 +57,7 @@ if [ -d "$A/.git" ]; then
     no "the fix commit message is not conventional"
   fi
 else
-  no "no repository at $A"
+  no "no repository at $A, run setup.sh first"
 fi
 
 # ---------------- Scenario B ----------------
@@ -125,7 +125,7 @@ if [ -d "$B/.git" ]; then
     no "answers do not mention rotating or revoking the credential, which is the part that matters"
   fi
 else
-  no "no repository at $B"
+  no "no repository at $B, run setup.sh first"
 fi
 
 # ---------------- Scenario C ----------------
@@ -172,7 +172,7 @@ if [ -d "$C/.git" ]; then
     no "$ANS is missing"
   fi
 else
-  no "no repository at $C"
+  no "no repository at $C, run setup.sh first"
 fi
 
 echo

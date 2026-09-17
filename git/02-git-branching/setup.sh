@@ -2,7 +2,7 @@
 # Builds the starting repository for assignment 02.
 set -euo pipefail
 
-REPO="${1:-$HOME/devops-course/02-branching}"
+REPO="${1:-$HOME/devops-course/git/02-branching}"
 
 if [ -e "$REPO" ]; then
   echo "Something already exists at $REPO"

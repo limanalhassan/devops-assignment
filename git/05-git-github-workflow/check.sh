@@ -12,7 +12,11 @@ echo
 
 if ! git -C "$REPO" rev-parse --git-dir >/dev/null 2>&1; then
   echo "  FAIL  $REPO is not a git repository"
-  echo; echo "0 passed, 1 failed"; exit 1
+  echo
+  echo "  Stand inside your clone of your fork and put a dot on the end of the"
+  echo "  command, or put the path to your clone there instead."
+  echo
+  echo "0 passed, 1 failed"; exit 1
 fi
 cd "$REPO" || exit 1
 
@@ -37,10 +41,10 @@ case "$origin" in
 esac
 
 branch=$(git rev-parse --abbrev-ref HEAD)
-if printf '%s' "$branch" | grep -qE '^[a-z0-9-]+/05$'; then
+if printf '%s' "$branch" | grep -qE '^[a-z0-9-]+/git-05$'; then
   ok "branch '$branch' follows the naming pattern"
 else
-  no "branch '$branch' does not match <your-name>/05 in lowercase"
+  no "branch '$branch' does not match <your-name>/git-05 in lowercase"
 fi
 
 student="${branch%%/*}"
@@ -52,6 +56,18 @@ if [ -f "$sub/about.md" ] && [ "$(wc -w < "$sub/about.md" | tr -d ' ')" -ge 60 ]
   ok "about.md has real content"
 elif [ -f "$sub/about.md" ]; then
   no "about.md is too short"
+fi
+
+n_linux=$(find "$sub/linux" -name ANSWERS.md 2>/dev/null | wc -l | tr -d ' ')
+if [ "$n_linux" -ge 8 ]; then
+  ok "$n_linux Linux ANSWERS.md files are in $sub/linux"
+else
+  no "found $n_linux ANSWERS.md files under $sub/linux, expected 8"
+fi
+if find "$sub/linux" -name INCIDENT.md 2>/dev/null | grep -q .; then
+  ok "the linux/09 incident report is included"
+else
+  no "INCIDENT.md from linux/09 is not in $sub/linux"
 fi
 
 if [ -f "$sub/ANSWERS.md" ] && [ "$(wc -w < "$sub/ANSWERS.md" | tr -d ' ')" -ge 150 ]; then

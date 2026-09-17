@@ -2,7 +2,7 @@
 # Checks assignment 01. Run from anywhere.
 set -u
 
-REPO="${1:-$HOME/devops-course/01-first-repo}"
+REPO="${1:-$HOME/devops-course/git/01-first-repo}"
 pass=0; fail=0
 ok()  { printf '  PASS  %s\n' "$1"; pass=$((pass+1)); }
 no()  { printf '  FAIL  %s\n' "$1"; fail=$((fail+1)); }
@@ -11,7 +11,10 @@ echo "Checking $REPO"
 echo
 
 if [ ! -d "$REPO" ]; then
-  echo "  FAIL  no directory at $REPO"
+  echo "  FAIL  there is no folder at $REPO"
+  echo
+  echo "  The checker looks for your work in that exact place. If you built it"
+  echo "  somewhere else, put that path on the end of the command."
   echo
   echo "0 passed, 1 failed"
   exit 1
@@ -30,6 +33,8 @@ name=$(git config user.name || true)
 email=$(git config user.email || true)
 [ -n "$name" ]  && ok "user.name is set ($name)"   || no "user.name is not set"
 [ -n "$email" ] && ok "user.email is set ($email)" || no "user.email is not set"
+editor=$(git config --global core.editor || true)
+[ -n "$editor" ] && ok "core.editor is set ($editor)" || no "core.editor is not set"
 
 count=$(git rev-list --count HEAD 2>/dev/null || echo 0)
 [ "$count" -ge 4 ] && ok "history has $count commits" \

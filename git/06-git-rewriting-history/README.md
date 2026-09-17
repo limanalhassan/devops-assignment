@@ -2,7 +2,7 @@
 
 **Level:** intermediate
 **Time:** about 3 hours
-**Prerequisites:** assignments 01 to 05
+**Prerequisites:** `git/01` to `git/05`
 
 ## Warm up drill
 
@@ -19,10 +19,10 @@ How to turn six messy commits into three good ones before anyone else sees them,
 ## Before you start
 
 ```
-./setup.sh
+bash ~/devops-course/course/git/06-git-rewriting-history/setup.sh
 ```
 
-That creates `~/devops-course/06-rewriting` and leaves you on `feature/search` with six commits, most of which are the kind of thing everyone actually produces while working.
+That creates `~/devops-course/git/06-rewriting` and leaves you on `feature/search` with six commits, most of which are the kind of thing everyone actually produces while working.
 
 Do not delete the tag `pre-cleanup`. The checker uses it to prove you did not lose any work.
 
@@ -47,13 +47,17 @@ Which brings back the rule from assignment 03. Rewriting history that only exist
 
 ## The task
 
-Work in `~/devops-course/06-rewriting`.
+Work in `~/devops-course/git/06-rewriting`.
 
 ### Part one, clean up the branch
 
 1. On `feature/search`, run `git log --oneline main..HEAD` and look at what you are about to publish. Six commits. Read the messages and decide honestly whether a reviewer could follow them.
 
-2. Start an interactive rebase against `main`. Read the instruction list carefully before you change anything, including the comments at the bottom.
+2. Start an interactive rebase against `main`. Git opens the list of commits in nano. Read it carefully before you change anything, including the comments at the bottom.
+
+   You change what happens to a commit by replacing the word `pick` at the start of its line. Edit the words, save with Ctrl and O then Enter, and leave with Ctrl and X. Git starts the rebase when nano closes. If it then opens nano again, it is asking you to write the message for a commit you squashed or reworded.
+
+   If you make a mess of the list, leave nano and run `git rebase --abort`. Everything goes back to how it was.
 
 3. Turn those six commits into exactly three, which must be:
 
@@ -90,7 +94,7 @@ Work in `~/devops-course/06-rewriting`.
 ## How you know you are done
 
 ```
-./check.sh
+bash ~/devops-course/course/git/06-git-rewriting-history/check.sh
 ```
 
 ## Questions to answer

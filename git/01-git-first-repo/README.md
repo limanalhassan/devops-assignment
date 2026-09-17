@@ -2,7 +2,7 @@
 
 **Level:** beginner
 **Time:** about 90 minutes
-**Prerequisites:** a terminal, Git installed (`git --version` should print something)
+**Prerequisites:** the whole Linux phase, `linux/01` to `linux/09`
 
 ## What you will learn
 
@@ -10,13 +10,15 @@ How Git actually stores your work, the difference between your working folder, t
 
 ## Before you start
 
-Check Git is installed:
+Everything in this phase happens inside the same Ubuntu terminal you used for the Linux phase. On a Mac that means inside your Multipass VM, on Windows inside the Ubuntu window, not PowerShell.
+
+Check Git is there:
 
 ```
 git --version
 ```
 
-If that fails, install it and come back.
+If that says command not found, go back to `linux/01` and finish Part 1.
 
 ## Background
 
@@ -34,13 +36,21 @@ The other thing worth knowing on day one: anything you commit is very hard to re
 
 ## The task
 
-Work in `~/devops-course/01-first-repo`. Create it yourself.
+Work in `~/devops-course/git/01-first-repo`. Create it yourself.
 
 1. Set your name and email in Git's global config so your commits are attributed to you. Use the same email you use on GitHub.
 
+   Then tell Git to use nano whenever it needs you to write something:
+
+   ```
+   git config --global core.editor nano
+   ```
+
+   Do not skip this. From the next assignment onwards Git will sometimes open an editor for you, and if you have not set one it opens vim, which is very hard to get out of the first time. You already know nano from the Linux phase.
+
 2. Create the folder and turn it into a Git repository. Look at what `git init` created. Run `ls -a` and find the `.git` directory. Do not edit anything inside it.
 
-3. Create a file called `notes.md` and write three or four lines in it about what you expect to learn from this course.
+3. Create a file called `notes.md` with nano and write three or four lines in it about what you expect to learn from this course.
 
 4. Run `git status` before staging anything. Read the output properly instead of skipping it. Then stage `notes.md` and run `git status` again. Notice what changed in the wording.
 
@@ -58,16 +68,8 @@ Work in `~/devops-course/01-first-repo`. Create it yourself.
 
 ## How you know you are done
 
-From this assignment folder:
-
 ```
-./check.sh
-```
-
-It assumes your repository is at `~/devops-course/01-first-repo`. If you put it somewhere else, pass the path:
-
-```
-./check.sh /path/to/your/repo
+bash ~/devops-course/course/git/01-git-first-repo/check.sh
 ```
 
 ## Questions to answer

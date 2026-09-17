@@ -2,7 +2,7 @@
 # Builds the three scenarios for assignment 08.
 set -euo pipefail
 
-ROOT="${1:-$HOME/devops-course/08-pressure}"
+ROOT="${1:-$HOME/devops-course/git/08-pressure}"
 
 if [ -e "$ROOT" ]; then
   echo "Something already exists at $ROOT"

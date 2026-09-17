@@ -2,7 +2,7 @@
 # Builds the starting repository for assignment 03, including the conflicts.
 set -euo pipefail
 
-REPO="${1:-$HOME/devops-course/03-conflicts}"
+REPO="${1:-$HOME/devops-course/git/03-conflicts}"
 
 if [ -e "$REPO" ]; then
   echo "Something already exists at $REPO"

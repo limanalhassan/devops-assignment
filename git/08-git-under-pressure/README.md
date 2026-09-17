@@ -2,7 +2,7 @@
 
 **Level:** mid
 **Time:** about 4 hours, but the individual scenarios are timed
-**Prerequisites:** assignments 01 to 07
+**Prerequisites:** `git/01` to `git/07`
 
 ## Warm up drill
 
@@ -19,18 +19,24 @@ The three things that make people panic about Git in real jobs, done under time 
 ## Before you start
 
 ```
-./setup.sh
+bash ~/devops-course/course/git/08-git-under-pressure/setup.sh
 ```
 
-That creates three separate repositories under `~/devops-course/08-pressure`. Do each scenario in one sitting and write down how long it took.
+That creates three separate repositories under `~/devops-course/git/08-pressure`. Do each scenario in one sitting and write down how long it took.
 
-All your written answers go in one file: `~/devops-course/08-pressure/ANSWERS.md`, at the root, not inside the individual repositories.
+All your written answers go in one file: `~/devops-course/git/08-pressure/ANSWERS.md`, at the root, not inside the individual repositories.
+
+Check Python is available, scenario A needs it:
+
+```
+python3 --version
+```
 
 ## Scenario A: find the commit that broke it
 
 **Target time: 20 minutes.**
 
-`~/devops-course/08-pressure/bisect` has sixty one commits. At the first commit, `python3 test_rates.py` passes. At the last commit it fails. VAT on 100 should be 115 and it is coming out as 100.15.
+`~/devops-course/git/08-pressure/bisect` has sixty one commits. At the first commit, `python3 test_rates.py` passes. At the last commit it fails. VAT on 100 should be 115 and it is coming out as 100.15.
 
 Sixty commits, mostly changelog noise. Reading them all is not the answer.
 
@@ -45,7 +51,7 @@ Sixty commits, mostly changelog noise. Reading them all is not the answer.
 
 **Target time: 45 minutes.**
 
-`~/devops-course/08-pressure/secret` contains a `.env` file that was committed with real looking AWS credentials in it. Someone later noticed, deleted the file and added a `.gitignore`. They believed that fixed it.
+`~/devops-course/git/08-pressure/secret` contains a `.env` file that was committed with real looking AWS credentials in it. Someone later noticed, deleted the file and added a `.gitignore`. They believed that fixed it.
 
 It did not. The credentials are still in every clone of this repository.
 
@@ -62,7 +68,7 @@ Note: `git filter-repo` is the modern tool and is worth installing. If you only 
 
 **Target time: 25 minutes.**
 
-`~/devops-course/08-pressure/rescue` was working an hour ago. A colleague ran a hard reset on `main` and force deleted a release branch. They have gone home. Nothing was pushed anywhere.
+`~/devops-course/git/08-pressure/rescue` was working an hour ago. A colleague ran a hard reset on `main` and force deleted a release branch. They have gone home. Nothing was pushed anywhere.
 
 What they believe is lost:
 
@@ -79,7 +85,7 @@ What they believe is lost:
 ## How you know you are done
 
 ```
-./check.sh
+bash ~/devops-course/course/git/08-git-under-pressure/check.sh
 ```
 
 It checks all three scenarios.

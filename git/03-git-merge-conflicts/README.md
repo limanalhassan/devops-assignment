@@ -2,7 +2,7 @@
 
 **Level:** beginner going into intermediate
 **Time:** about 2 hours
-**Prerequisites:** assignments 01 and 02
+**Prerequisites:** `git/01` and `git/02`
 
 ## Warm up drill
 
@@ -19,10 +19,10 @@ How to read a conflict instead of panicking at it, how to resolve one properly, 
 ## Before you start
 
 ```
-./setup.sh
+bash ~/devops-course/course/git/03-git-merge-conflicts/setup.sh
 ```
 
-That creates `~/devops-course/03-conflicts` with three branches that have all edited the same file.
+That creates `~/devops-course/git/03-conflicts` with three branches that have all edited the same file.
 
 ## Background
 
@@ -48,7 +48,7 @@ The rule that matters: never rebase commits that other people have already pulle
 
 ## The task
 
-Work in `~/devops-course/03-conflicts`.
+Work in `~/devops-course/git/03-conflicts`.
 
 The team has decided the correct final configuration is port 9090, timeout 60, workers 4, retries 3. You are going to arrive at that by combining the branches.
 
@@ -64,7 +64,7 @@ The team has decided the correct final configuration is port 9090, timeout 60, w
 
 5. Confirm no conflict markers are left anywhere in the file.
 
-6. Stage the resolved file and complete the merge. Notice that you commit without passing a message.
+6. Stage the resolved file and complete the merge. Notice that you commit without passing a message, so nano opens with one already written. Save and exit.
 
 7. Run `git log --oneline --graph` and find the merge commit.
 
@@ -78,7 +78,7 @@ The team has decided the correct final configuration is port 9090, timeout 60, w
 
 10. Resolve the conflict. Port should end up as 9090 and everything main gained must survive.
 
-11. Continue the rebase. The command is not `git commit`. Find the right one.
+11. Continue the rebase. The command is not `git commit`. Find the right one. Nano will open showing the commit message, save and exit to carry on.
 
 12. Switch to `main` and merge `feature/port-change`. Because you rebased, this is a fast forward and no merge commit appears.
 
@@ -89,7 +89,7 @@ The team has decided the correct final configuration is port 9090, timeout 60, w
 ## How you know you are done
 
 ```
-./check.sh
+bash ~/devops-course/course/git/03-git-merge-conflicts/check.sh
 ```
 
 ## Questions to answer

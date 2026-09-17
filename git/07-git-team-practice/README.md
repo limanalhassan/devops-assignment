@@ -2,7 +2,7 @@
 
 **Level:** intermediate
 **Time:** about 3 hours
-**Prerequisites:** assignments 01 to 06
+**Prerequisites:** `git/01` to `git/06`, and `linux/07` shell scripting, which this assignment leans on heavily
 
 ## Warm up drill
 
@@ -19,10 +19,10 @@ The parts of Git that are actually about other people. Reviewing someone else's 
 ## Before you start
 
 ```
-./setup.sh
+bash ~/devops-course/course/git/07-git-team-practice/setup.sh
 ```
 
-That creates `~/devops-course/07-team` with a branch called `feature/user-auth` that a colleague has submitted for review.
+That creates `~/devops-course/git/07-team` with a branch called `feature/user-auth` that a colleague has submitted for review.
 
 ## Background
 
@@ -32,13 +32,13 @@ Three things fix most of it.
 
 **A commit convention.** Conventional Commits is the common one. The subject looks like `feat(auth): add token validation` or `fix: correct discount rounding`. It reads well, but the real reason to adopt it is that a machine can read it. Release tooling reads your commit types and works out the next version number on its own. `feat` means a minor bump, `fix` means a patch, and a breaking change footer means a major.
 
-**Hooks.** Git runs scripts at certain moments. `commit-msg` runs before a commit is recorded and can reject a badly formatted message. `pre-commit` runs before that and can reject the change itself, which is how you stop a secret being committed rather than finding it in the history six months later. Hooks in `.git/hooks` are not shared with anyone, so teams put them in a tracked folder and point `core.hooksPath` at it.
+**Hooks.** Git runs scripts at certain moments. `commit-msg` runs before a commit is recorded and can reject a badly formatted message. `pre-commit` runs before that and can reject the change itself, which is how you stop a secret being committed rather than finding it in the history six months later. A hook is just a shell script, exactly like the ones you wrote in `linux/07`. It gets arguments, it runs, and its exit code decides what happens: zero lets the commit through, anything else stops it. Hooks in `.git/hooks` are not shared with anyone, so teams put them in a tracked folder and point `core.hooksPath` at it.
 
 **Reviewing properly.** A review is not a syntax check. You are looking for whether this change does what it claims, whether it will behave badly in production, and whether anyone else can maintain it. Say what you found, where, and why it matters. "Change this" is not a review comment. "This swallows every exception, so an expired token and a malformed token both look like a successful login" is.
 
 ## The task
 
-Work in `~/devops-course/07-team`.
+Work in `~/devops-course/git/07-team`.
 
 ### Part one, review a colleague's branch
 
@@ -73,7 +73,7 @@ Work in `~/devops-course/07-team`.
 ## How you know you are done
 
 ```
-./check.sh
+bash ~/devops-course/course/git/07-git-team-practice/check.sh
 ```
 
 The checker actually runs your hooks with good and bad input. It is not looking at whether the files exist, it is looking at whether they work.

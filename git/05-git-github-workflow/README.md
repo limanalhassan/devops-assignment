@@ -2,7 +2,7 @@
 
 **Level:** intermediate
 **Time:** about 2 hours
-**Prerequisites:** assignments 01 to 04, a GitHub account
+**Prerequisites:** `git/01` to `git/04`, `linux/08` for your SSH key, and a free GitHub account
 
 ## Warm up drill
 
@@ -31,36 +31,59 @@ The other thing to understand early: a pull request is a conversation, not a del
 
 ## The task
 
-The course repository is the one in `../course.env`. Ask your instructor for the URL if that file has not been filled in.
+The course repository is the one you cloned in `linux/01`, and its address is in the `course.env` file at the top of it. Ask your instructor if that file still says CHANGE-ME.
 
 1. Fork the course repository on GitHub using the Fork button. Read what GitHub tells you it did.
 
-2. Clone **your fork**, not the original, into `~/devops-course/05-workflow`. Use the SSH URL, not HTTPS. If you have never set up an SSH key for GitHub, do that now, it will save you typing a token every day for the rest of your career.
+2. Give GitHub your SSH public key, so it knows it is you without asking for a password. You made this key in `linux/08`.
 
-3. Run `git remote -v`. You have one remote called `origin` and it points at your fork.
+   Print it:
 
-4. Add a second remote called `upstream` pointing at the original course repository. Confirm with `git remote -v` that you now have four lines.
+   ```
+   cat ~/.ssh/id_ed25519.pub
+   ```
 
-5. Create a branch named `<your-name>/05`, all lowercase, for example `ama/05`. This naming pattern is used for every assignment from now on.
+   Copy the whole single line it prints, starting `ssh-ed25519`. On GitHub go to your profile picture, **Settings**, **SSH and GPG keys**, **New SSH key**. Give it a title like "course VM", paste the line into the Key box, and save.
 
-6. Create a folder `submissions/<your-name>/` and add a file `about.md` in it. Write who you are, what you want out of this course, and what you found hardest in assignments 01 to 04. Be honest about the last one, it tells your instructor what to spend time on.
+   Never paste the file without `.pub` anywhere. That one is your private key and it never leaves your machine.
 
-7. Commit it with a proper message and push the branch to `origin`. Read the output. Git prints a URL you can click to open the pull request.
+   Test it:
 
-8. Open a pull request from your branch into the course repository's `main`. Write a description that says what you did. "Assignment 05" is not a description.
+   ```
+   ssh -T git@github.com
+   ```
 
-9. Your instructor will leave review comments. When they do, fix what was raised and push more commits to the same branch. Do not open a second pull request and do not force push. Watch the pull request update on its own.
+   The first time it asks whether to trust GitHub's fingerprint. Type `yes`. You are done when it says `Hi <your-username>! You've successfully authenticated`. It then says GitHub does not provide shell access, which is expected and not an error.
 
-10. While you wait, the course repository has moved on. Sync your fork: fetch from `upstream`, and bring `upstream/main` into your local `main`. Then push your updated `main` to `origin` so your fork on GitHub is current too.
+3. Clone **your fork**, not the original, into `~/devops-course/git/05-workflow`. On your fork's GitHub page press the green Code button, choose **SSH**, and copy that address. It starts `git@github.com:`, not `https://`.
 
-11. Confirm with `git log --oneline main..upstream/main` that there is nothing left to pull. Empty output means you are in sync.
+4. Run `git remote -v`. You have one remote called `origin` and it points at your fork.
+
+5. Add a second remote called `upstream` pointing at the original course repository. Confirm with `git remote -v` that you now have four lines.
+
+6. Create a branch named `<your-name>/git-05`, all lowercase, for example `ama/git-05`. This naming pattern, your name then the phase and number, is used for every submission from now on.
+
+7. Create a folder `submissions/<your-name>/` and add a file `about.md` in it. Write who you are, what you want out of this course, and what you found hardest so far. Be honest about the last one, it tells your instructor what to spend time on.
+
+8. Nobody has seen your Linux work yet. Copy every `ANSWERS.md` from `~/devops-course/linux/` into `submissions/<your-name>/linux/`, keeping each one inside a folder named after its assignment, so you end up with `submissions/<your-name>/linux/02-files/ANSWERS.md` and so on. Do it with the commands from `linux/02`, not by hand one at a time. Copy `INCIDENT.md` from `linux/09` as well.
+
+9. Commit it with a proper message and push the branch to `origin`. Read the output. Git prints a URL you can click to open the pull request.
+
+10. Open a pull request from your branch into the course repository's `main`. Write a description that says what you did. "Assignment 05" is not a description.
+
+11. Your instructor will leave review comments. When they do, fix what was raised and push more commits to the same branch. Do not open a second pull request and do not force push. Watch the pull request update on its own.
+
+12. While you wait, the course repository has moved on. Sync your fork: fetch from `upstream`, and bring `upstream/main` into your local `main`. Then push your updated `main` to `origin` so your fork on GitHub is current too.
+
+13. Confirm with `git log --oneline main..upstream/main` that there is nothing left to pull. Empty output means you are in sync.
 
 ## How you know you are done
 
-Run this from inside your clone:
+This is the one assignment where you work inside your own clone rather than a folder the checker already knows about, so stand inside your clone and put a dot on the end, which means "this folder":
 
 ```
-/path/to/course-repo/git/05-git-github-workflow/check.sh
+cd ~/devops-course/git/05-workflow
+bash ~/devops-course/course/git/05-git-github-workflow/check.sh .
 ```
 
 The check covers everything on your machine. It cannot see your pull request, so the last two items are confirmed by your instructor in the review.
