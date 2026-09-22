@@ -111,4 +111,5 @@ sudo chmod 644 /etc/cron.d/cache-warm
 
 date '+%Y-%m-%d %H:%M:%S' > "$WORK/.incident-start"
 echo
+echo "linux/09" > "$WORK/.course-exercise"
 echo "The machine is now broken. Read the ticket in the README and start the clock."

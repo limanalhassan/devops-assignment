@@ -1,6 +1,6 @@
 # Instructor notes and solutions stay local, never pushed
 CLAUDE.md
-solutions/
+*solution*
 
 # Local env and secrets
 .env

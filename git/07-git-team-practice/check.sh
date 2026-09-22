@@ -1,19 +1,37 @@
 #!/usr/bin/env bash
 set -u
 
-REPO="${1:-$HOME/devops-course/git/07-team}"
+# Which folder to check: the one you name, otherwise the folder you are
+# standing in (or one above it) if it looks like this exercise, otherwise
+# the usual place.
+course_root=$(cd "$(dirname "$0")/../.." 2>/dev/null && pwd)
+{ [ -d "$course_root/linux" ] && [ -d "$course_root/git" ]; } || course_root=/nonexistent
+looks_like() { [ -d "$1/.git" ] && [ -f "$1/auth.py" ]; }
+pick_here() {
+  local d="$PWD" i
+  for i in 1 2 3 4; do
+    case "$d" in "$course_root"|"$course_root"/*) return 1 ;; esac
+    if looks_like "$d"; then printf '%s\n' "$d"; return 0; fi
+    [ "$d" = / ] && return 1
+    d=$(dirname "$d")
+  done
+  return 1
+}
+if [ $# -ge 1 ]; then REPO="$1"; how="the folder you named"
+elif REPO=$(pick_here); then how="the folder you are in"
+else REPO="$HOME/devops-course/git/07-team"; how="the usual place"; fi
 pass=0; fail=0
 ok() { printf '  PASS  %s\n' "$1"; pass=$((pass+1)); }
 no() { printf '  FAIL  %s\n' "$1"; fail=$((fail+1)); }
 
-echo "Checking $REPO"
+echo "Checking $REPO ($how)"
 echo
 
 if [ ! -d "$REPO" ] || ! git -C "$REPO" rev-parse --git-dir >/dev/null 2>&1; then
   echo "  FAIL  there is no git repository at $REPO"
   echo
-  echo "  The checker looks for your work in that exact place. If you built it"
-  echo "  somewhere else, put that path on the end of the command."
+  echo "  If your work is somewhere else, go into that folder and run the"
+  echo "  checker from there, or put the folder's path on the end of the command."
   echo
   echo "0 passed, 1 failed"; exit 1
 fi

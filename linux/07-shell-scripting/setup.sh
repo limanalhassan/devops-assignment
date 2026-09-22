@@ -78,4 +78,5 @@ echo "first note" > "$WORK/sample-data/notes/1.txt"
 echo "second note" > "$WORK/sample-data/notes/2.txt"
 echo "settings" > "$WORK/sample-data/settings.conf"
 
+echo "linux/07" > "$WORK/.course-exercise"
 echo "Ready. Sample inputs are in $WORK"

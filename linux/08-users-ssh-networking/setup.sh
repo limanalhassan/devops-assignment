@@ -62,4 +62,5 @@ UNIT
 sudo systemctl daemon-reload
 sudo systemctl enable --now metrics-agent >/dev/null 2>&1
 
+echo "linux/08" > "$WORK/.course-exercise"
 echo "Ready. Something new is listening on this machine. Nobody wrote down where."

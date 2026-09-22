@@ -65,4 +65,5 @@ printf 'print("project a")\n' > "$D/old_projects/project-a/src/main.py"
 echo "# Project B" > "$D/old_projects/project-b/README.md"
 echo "sk_live_not_a_real_key_7f3a91" > "$D/old_projects/project-b/notes/.api_key"
 
+echo "linux/02" > "$WORK/.course-exercise"
 echo "Ready. Your messy folder is at $D"

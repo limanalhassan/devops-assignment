@@ -1,19 +1,37 @@
 #!/usr/bin/env bash
 set -u
 
-WORK="${1:-$HOME/devops-course/linux/04-processes}"
+# Which folder to check: the one you name, otherwise the folder you are
+# standing in (or one above it) if it looks like this exercise, otherwise
+# the usual place.
+course_root=$(cd "$(dirname "$0")/../.." 2>/dev/null && pwd)
+{ [ -d "$course_root/linux" ] && [ -d "$course_root/git" ]; } || course_root=/nonexistent
+looks_like() { grep -qx linux/04 "$1/.course-exercise" 2>/dev/null || [ -f "$1/heartbeat.sh" ]; }
+pick_here() {
+  local d="$PWD" i
+  for i in 1 2 3 4; do
+    case "$d" in "$course_root"|"$course_root"/*) return 1 ;; esac
+    if looks_like "$d"; then printf '%s\n' "$d"; return 0; fi
+    [ "$d" = / ] && return 1
+    d=$(dirname "$d")
+  done
+  return 1
+}
+if [ $# -ge 1 ]; then WORK="$1"; how="the folder you named"
+elif WORK=$(pick_here); then how="the folder you are in"
+else WORK="$HOME/devops-course/linux/04-processes"; how="the usual place"; fi
 pass=0; fail=0
 ok() { printf '  PASS  %s\n' "$1"; pass=$((pass+1)); }
 no() { printf '  FAIL  %s\n' "$1"; fail=$((fail+1)); }
 
-echo "Checking $WORK"
+echo "Checking $WORK ($how)"
 echo
 
 if [ ! -d "$WORK" ]; then
   echo "  FAIL  there is no folder at $WORK"
   echo
-  echo "  Run setup.sh first. If you built your work somewhere else, put that"
-  echo "  path on the end of the command."
+  echo "  Run setup.sh first. If your work is somewhere else, go into that"
+  echo "  folder and run the checker from there, or put its path on the end."
   echo
   echo "0 passed, 1 failed"; exit 1
 fi

@@ -53,4 +53,5 @@ here="$(cd "$(dirname "$0")" && pwd)"
 while :; do date +%T >> "$here/heartbeat.log"; sleep 2; done
 TXT
 
+echo "linux/04" > "$WORK/.course-exercise"
 echo "Ready. Three programs are waiting in $WORK"

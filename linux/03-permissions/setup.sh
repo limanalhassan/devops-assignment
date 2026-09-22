@@ -57,4 +57,5 @@ printf 'legacy_mode = true\n' | sudo tee "$P/config/legacy.conf" >/dev/null
 sudo chown root:root "$P/config/legacy.conf"
 sudo chmod 600 "$P/config/legacy.conf"
 
+echo "linux/03" > "$WORK/.course-exercise"
 echo "Ready. The project is at $P"

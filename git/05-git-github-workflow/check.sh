@@ -2,12 +2,30 @@
 # Run this from inside your clone of your fork.
 set -u
 
-REPO="${1:-$PWD}"
+# Which folder to check: the one you name, otherwise the folder you are
+# standing in (or one above it) if it looks like this exercise, otherwise
+# the usual place.
+course_root=$(cd "$(dirname "$0")/../.." 2>/dev/null && pwd)
+{ [ -d "$course_root/linux" ] && [ -d "$course_root/git" ]; } || course_root=/nonexistent
+looks_like() { [ -d "$1/.git" ] && [ -d "$1/linux" ] && [ -d "$1/git" ]; }
+pick_here() {
+  local d="$PWD" i
+  for i in 1 2 3 4; do
+    case "$d" in "$course_root"|"$course_root"/*) return 1 ;; esac
+    if looks_like "$d"; then printf '%s\n' "$d"; return 0; fi
+    [ "$d" = / ] && return 1
+    d=$(dirname "$d")
+  done
+  return 1
+}
+if [ $# -ge 1 ]; then REPO="$1"; how="the folder you named"
+elif REPO=$(pick_here); then how="the folder you are in"
+else REPO="$PWD"; how="the usual place"; fi
 pass=0; fail=0
 ok() { printf '  PASS  %s\n' "$1"; pass=$((pass+1)); }
 no() { printf '  FAIL  %s\n' "$1"; fail=$((fail+1)); }
 
-echo "Checking $REPO"
+echo "Checking $REPO ($how)"
 echo
 
 if ! git -C "$REPO" rev-parse --git-dir >/dev/null 2>&1; then
@@ -108,7 +126,7 @@ if git rev-parse --verify --quiet upstream/main >/dev/null; then
                    || no "$own commit(s) were made directly on main instead of the branch"
 fi
 
-[ -z "$(git status --porcelain)" ] && ok "working tree is clean" \
+[ -z "$(git status --porcelain | grep -vE '^\?\? (check|setup)\.sh$')" ] && ok "working tree is clean" \
                                    || no "working tree is not clean"
 
 echo

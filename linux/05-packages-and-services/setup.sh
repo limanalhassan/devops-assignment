@@ -62,4 +62,5 @@ print(f"pinger listening on port {PORT}", flush=True)
 HTTPServer(("0.0.0.0", PORT), Handler).serve_forever()
 TXT
 
+echo "linux/05" > "$WORK/.course-exercise"
 echo "Ready. The service is at $WORK/pinger.py"

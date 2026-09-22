@@ -88,4 +88,5 @@ target = db-old.internal
 verify = db-old.internal
 TXT
 
+echo "linux/06" > "$WORK/.course-exercise"
 echo "Ready. Logs and config are in $WORK"
