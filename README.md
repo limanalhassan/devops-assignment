@@ -33,4 +33,17 @@ bash ~/devops-course/course/linux/02-files-and-directories/check.sh
 
 The checker tells you what passed and what failed. It never tells you how to fix anything, because working that out is the assignment.
 
+## Where your work goes
+
+Your work never goes inside the course files. `setup.sh` builds each exercise in its own folder under `~/devops-course/`, next to the course rather than inside it, so the course stays exactly as you downloaded it.
+
+If you would rather work somewhere else, give `setup.sh` a folder and give `check.sh` the same one:
+
+```
+bash ~/devops-course/course/linux/02-files-and-directories/setup.sh ~/practice/files
+bash ~/devops-course/course/linux/02-files-and-directories/check.sh ~/practice/files
+```
+
+`setup.sh` refuses to build anything inside the course folder, so you cannot mix your answers into it by accident.
+
 Everything happens inside Ubuntu, even if your computer runs Windows or macOS. The first assignment sets that up.

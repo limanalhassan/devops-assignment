@@ -15,6 +15,15 @@ bash ~/devops-course/course/linux/02-files-and-directories/check.sh
 
 Your own work goes in `~/devops-course/linux/`. The course files stay untouched in `~/devops-course/course/`. `linux/01` sets all of this up and explains why.
 
+Both scripts take a folder if you want to work somewhere else. Give the same one to each:
+
+```
+bash ~/devops-course/course/linux/02-files-and-directories/setup.sh ~/practice/files
+bash ~/devops-course/course/linux/02-files-and-directories/check.sh ~/practice/files
+```
+
+`setup.sh` refuses to build an exercise inside the course files, so your answers can never end up mixed into the course.
+
 ## The assignments
 
 | # | Assignment | Level | Time |

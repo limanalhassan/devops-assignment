@@ -4,6 +4,27 @@ set -euo pipefail
 
 ROOT="${1:-$HOME/devops-course/git/08-pressure}"
 
+# Your work never belongs inside the course files, or you would end up
+# committing your answers back to the course repository.
+course_root=$(cd "$(dirname "$0")/../.." && pwd)
+abs_target=$(realpath -m "$ROOT" 2>/dev/null) || case "$ROOT" in
+  /*) abs_target="$ROOT" ;;
+  *)  abs_target="$PWD/$ROOT" ;;
+esac
+case "$abs_target" in
+  "$course_root"|"$course_root"/*)
+    echo "Refusing to build this exercise inside the course files."
+    echo
+    echo "  you asked for:       $abs_target"
+    echo "  the course lives in: $course_root"
+    echo
+    echo "Keep your work separate, so it never gets mixed into the course."
+    echo "Run it with no path at all to use the usual place:"
+    echo "  bash $0"
+    exit 1
+    ;;
+esac
+
 if [ -e "$ROOT" ]; then
   echo "Something already exists at $ROOT"
   echo "Move it or delete it first, then run this again."

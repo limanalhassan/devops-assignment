@@ -13,7 +13,16 @@ bash ~/devops-course/course/git/02-git-branching/setup.sh
 bash ~/devops-course/course/git/02-git-branching/check.sh
 ```
 
-Your own work goes in `~/devops-course/git/`. The course files you cloned stay untouched in `~/devops-course/course/`.
+Your own work goes in `~/devops-course/git/`. The course files stay untouched in `~/devops-course/course/`.
+
+Both scripts take a folder if you want to work somewhere else. Give the same one to each:
+
+```
+bash ~/devops-course/course/git/02-git-branching/setup.sh ~/practice/branching
+bash ~/devops-course/course/git/02-git-branching/check.sh ~/practice/branching
+```
+
+`setup.sh` refuses to build an exercise inside the course files, so your answers can never end up mixed into the course.
 
 ## The assignments
 
